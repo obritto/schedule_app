@@ -10,8 +10,7 @@ It was used flutter with reactive programming using BLOC pattern, sqlite was use
 
 To run functional tests:
 
-```Iflutter drive --target=test_driver/app.dart```
-
+`flutter drive --target=test_driver/app.dart`
 
 To run unit tests:
 
