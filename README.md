@@ -1,16 +1,34 @@
-# schedule_app
+# Schedule App
 
-Schedule App
+A Flutter app where users can register their schedules when they are completed.
+
+It was used flutter with reactive programming using BLOC pattern, sqlite was used to store local data. The instructions to run is bellow.
+
+![](record_app.gif)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run functional tests:
 
-A few resources to get you started if this is your first Flutter project:
+flutter drive --target=test_driver/app.dart
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+To run unit tests:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+flutter test
+
+To generate android apk
+
+flutter build apk
+
+To generate iOS apk
+
+flutter build ios
+
+To install: First you nedd to get your device id with
+
+flutter devices
+
+Now, to install
+
+flutter install -d <deviceId>
+
