@@ -10,25 +10,25 @@ It was used flutter with reactive programming using BLOC pattern, sqlite was use
 
 To run functional tests:
 
-`flutter drive --target=test_driver/app.dart
+`flutter drive --target=test_driver/app.dart`
 
 To run unit tests:
 
-`flutter test
+`flutter test`
 
 To generate android apk
 
-`flutter build apk
+`flutter build apk`
 
 To generate iOS apk
 
-`flutter build ios
+`flutter build ios`
 
 To install: First you nedd to get your device id with
 
-`flutter devices
+`flutter devices`
 
 Now, to install
 
-`flutter install -d <deviceId>
+`flutter install -d <deviceId>`
 
