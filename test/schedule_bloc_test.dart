@@ -18,8 +18,6 @@ main() {
 
   group('getList', () {
     test('Should return Schedule List', () async {
-      // Use Mockito to return a successful list when it calls the
-      // provided mehod getList.
       when(bloc.getScheduleList()).thenAnswer((_) async => [
             ScheduleModel(
                 id: '111111',

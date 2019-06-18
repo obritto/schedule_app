@@ -20,7 +20,6 @@ class SchedulingDetailsBloc extends BaseBloc {
 
   // retrieve data from stream
   Stream<bool> get isLoading => _isLoading.stream;
-
   Stream<bool> get newObj => _newObj.stream;
   Stream<bool> get ok => _ok.stream;
   Stream<DateTime> get startDate => _startDate.stream;

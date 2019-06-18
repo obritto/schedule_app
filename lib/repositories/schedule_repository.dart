@@ -28,7 +28,6 @@ class ScheduleRepository implements IRepository {
 
   @override
   Future updateTable(Database db) {
-    // por enquanto vazio
     return null;
   }
 

@@ -29,17 +29,14 @@ void main() {
     });
 
     test('Should viewing the Schedule page', () async {
-      // Use the `driver.getText` method to verify the counter starts at 0.
       expect(await driver.getText(titleScheduleFinder), "Schedule");
     });
 
     test('Should must press the add button', () async {
-      // First, tap the button.
       await driver.tap(buttonAddFinder);
     });
 
     test('Should viewing the Scheduling Details page', () async {
-      // Use the `driver.getText` method to verify the counter starts at 0.
       expect(await driver.getText(titleSchedulingDetails), "Scheduling Details");
     });
 
@@ -53,7 +50,6 @@ void main() {
     });
 
     test('Should viewing the Schedule page', () async {
-      // Use the `driver.getText` method to verify the counter starts at 0.
       expect(await driver.getText(titleScheduleFinder), "Schedule");
     });
 

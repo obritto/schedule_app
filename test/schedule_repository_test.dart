@@ -13,8 +13,6 @@ main() {
 
   group('getList', () {
     test('Should return Schedule List', () async {
-      // Use Mockito to return a successful list when it calls the
-      // provided mehod getList.
       when(repository.getList()).thenAnswer((_) async => [
             ScheduleModel(
                 id: '111111',
@@ -36,8 +34,6 @@ main() {
 
   group('getObject', () {
     test('Should return Schedule Object', () async {
-      // Use Mockito to return a successful list when it calls the
-      // provided mehod getList.
       when(await repository.getObject('1')).thenAnswer((_) async =>
           ScheduleModel(
               id: '1',
@@ -52,8 +48,6 @@ main() {
 
   group('insertObject', () {
     test('Should return Schedule Object inserted', () async {
-      // Use Mockito to return a successful list when it calls the
-      // provided mehod getList.
       when(repository.insertObject(ScheduleModel())).thenAnswer((_) async =>
           ScheduleModel(
               id: '1',
@@ -69,8 +63,6 @@ main() {
 
   group('updateObject', () {
     test('Should return Schedule Object updated', () async {
-      // Use Mockito to return a successful list when it calls the
-      // provided mehod getList.
       when(repository.updateObject('1', ScheduleModel())).thenAnswer(
           (_) async => ScheduleModel(
               id: '1',
@@ -86,8 +78,6 @@ main() {
 
   group('deleteObject', () {
     test('Should return true indicating that the deletion occurred', () async {
-      // Use Mockito to return a successful list when it calls the
-      // provided mehod getList.
       when(repository.deleteObject('1')).thenAnswer((_) async => true);
 
       expect(await repository.deleteObject('1'), true);
@@ -97,8 +87,6 @@ main() {
   group('clean', () {
     test('Should return true indicating that the cleanup has occurred',
         () async {
-      // Use Mockito to return a successful list when it calls the
-      // provided mehod getList.
       when(repository.clean()).thenAnswer((_) async => true);
 
       expect(await repository.clean(), true);

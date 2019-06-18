@@ -16,7 +16,6 @@ class ScheduleBloc extends BaseBloc {
 
   ScheduleBloc({@required this.repositorySchedule})
       : assert(repositorySchedule != null) {
-    //getScheduleList();
   }
 
   Future getScheduleList() async {
