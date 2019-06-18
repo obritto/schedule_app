@@ -17,7 +17,7 @@ main() {
   });
 
   group('save', () {
-    test('Should return True indicating that the Schedule Object has inserted',
+    test('Should return true indicating that the Schedule Object has inserted',
         () async {
       var schedule = ScheduleModel();
       when(bloc.save()).thenAnswer((_) async {
@@ -34,7 +34,7 @@ main() {
       bloc.dispose();
     });
 
-    test('Should return True indicating that the Schedule Object has updated',
+    test('Should return true indicating that the Schedule Object has updated',
         () async {
       var schedule = ScheduleModel(id: '1');
       when(bloc.save()).thenAnswer((_) async {
@@ -53,7 +53,7 @@ main() {
   });
 
   group('delete', () {
-    test('Should return True indicating that the Schedule Object has removed',
+    test('Should return true indicating that the Schedule Object has removed',
         () async {
       when(bloc.delete()).thenAnswer((_) async {
         await mockRepository.deleteObject('1');

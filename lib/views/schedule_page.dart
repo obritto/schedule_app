@@ -19,7 +19,9 @@ class _SchedulePageState extends State<SchedulePage> {
   void _handleAddSchedule() async {
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SchedulingDetailsPage()),
+      MaterialPageRoute(
+        builder: (context) => SchedulingDetailsPage(),
+      ),
     );
 
     _bloc.getScheduleList();
@@ -29,7 +31,8 @@ class _SchedulePageState extends State<SchedulePage> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => SchedulingDetailsPage(schedule: schedule)),
+        builder: (context) => SchedulingDetailsPage(schedule: schedule),
+      ),
     );
 
     _bloc.getScheduleList();
@@ -37,7 +40,9 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   void initState() {
-    _bloc = ScheduleBloc(repositorySchedule: ScheduleRepository());
+    _bloc = ScheduleBloc(
+      repositorySchedule: ScheduleRepository(),
+    );
     _bloc.getScheduleList();
     super.initState();
   }
@@ -54,101 +59,112 @@ class _SchedulePageState extends State<SchedulePage> {
       appBar: AppBar(
         title: Text(
           'Schedule',
-          key: Key('scheduleTitle'),
+          key: Key('titleSchedule'),
         ),
       ),
-      body: Column(
+      body:
+          //Container(),
+          Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          StreamBuilder<bool>(
-              stream: _bloc.isLoading,
-              initialData: false,
-              builder: (context, it) {
-                return Offstage(
-                    offstage: !it.data,
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ));
-              }),
           StreamBuilder<List<ScheduleModel>>(
             stream: _bloc.listSchedule,
             initialData: [],
             builder: (context, listSchedule) {
               return Flexible(
-                  child: ClipRect(
-                      child: listSchedule.data.length == 0
-                          ? Container(
-                              child: Center(child: Text('Without scheduling')))
-                          : ListView.builder(
-                              key: Key('listSchedule'),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 20.0, horizontal: 15.0),
-                              itemCount: listSchedule.data.length,
-                              itemBuilder: (_, index) {
-                                return _buildSchedule(listSchedule.data[index]);
-                              })));
+                child: ClipRect(
+                  child: listSchedule.data.length == 0
+                      ? Container(
+                          child: Center(
+                            child: Text('Without scheduling'),
+                          ),
+                        )
+                      : ListView.builder(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 15.0),
+                          itemCount: listSchedule.data.length,
+                          itemBuilder: (_, index) {
+                            return _buildSchedule(
+                              listSchedule.data[index],
+                            );
+                          },
+                        ),
+                ),
+              );
             },
           )
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        key: Key('increment'),
+        key: Key('buttonAdd'),
         onPressed: _handleAddSchedule,
         tooltip: 'Add',
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+        ),
       ),
     );
   }
 
   Widget _buildSchedule(ScheduleModel schedule) {
     return Padding(
-        padding: EdgeInsets.symmetric(vertical: 3.0),
-        child: GestureDetector(
-            onTap: () => _handleTapSchedule(schedule),
-            child: Container(
-              child: Row(
+      padding: EdgeInsets.symmetric(
+        vertical: 3.0,
+      ),
+      child: FlatButton(
+        key: Key("textFieldDescription"),
+        onPressed: () => _handleTapSchedule(
+              schedule,
+            ),
+        child: Container(
+          child: Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Icon(
+                  Icons.calendar_today,
+                  size: 25,
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.calendar_today,
-                      size: 25,
+                    child: Text(
+                      schedule.description == null ||
+                              schedule.description.isEmpty
+                          ? 'No description'
+                          : schedule.description,
+                      style: TextStyle(
+                        color:
+                            (schedule.ok == true) ? Colors.green : Colors.black,
+                      ),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                            schedule.description == null ||
-                                    schedule.description.isEmpty
-                                ? 'No description'
-                                : schedule.description,
-                            style: TextStyle(
-                                color: (schedule.ok == true)
-                                    ? Colors.green
-                                    : Colors.black)),
+                  Container(
+                    child: Text(
+                      Util.showDateTime(schedule.startDate, 'No date'),
+                      style: TextStyle(
+                        color:
+                            (schedule.ok == true) ? Colors.green : Colors.black,
                       ),
-                      Container(
-                        child: Text(
-                            Util.showDateTime(schedule.startDate, 'No date'),
-                            style: TextStyle(
-                                color: (schedule.ok == true)
-                                    ? Colors.green
-                                    : Colors.black)),
+                    ),
+                  ),
+                  Container(
+                    child: Text(
+                      Util.showDateTime(schedule.endDate, 'No date'),
+                      style: TextStyle(
+                        color:
+                            (schedule.ok == true) ? Colors.green : Colors.black,
                       ),
-                      Container(
-                        child: Text(
-                            Util.showDateTime(schedule.endDate, 'No date'),
-                            style: TextStyle(
-                                color: (schedule.ok == true)
-                                    ? Colors.green
-                                    : Colors.black)),
-                      ),
-                    ],
-                  )
+                    ),
+                  ),
                 ],
-              ),
-            )));
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

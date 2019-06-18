@@ -85,7 +85,7 @@ main() {
   });
 
   group('deleteObject', () {
-    test('Should return True indicating that the deletion occurred', () async {
+    test('Should return true indicating that the deletion occurred', () async {
       // Use Mockito to return a successful list when it calls the
       // provided mehod getList.
       when(repository.deleteObject('1')).thenAnswer((_) async => true);
@@ -95,7 +95,7 @@ main() {
   });
 
   group('clean', () {
-    test('Should return True indicating that the cleanup has occurred',
+    test('Should return true indicating that the cleanup has occurred',
         () async {
       // Use Mockito to return a successful list when it calls the
       // provided mehod getList.
